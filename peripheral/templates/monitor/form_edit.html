@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Edit Monitor{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-warning text-center py-3">
+                    <h2 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Monitor
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'monitor.update' id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control" value="{{ nama }}" placeholder="Masukkan nama produk" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="merek" class="form-label">Merek</label>
+                            <input type="text" name="merek" id="merek" class="form-control" value="{{ merek }}" placeholder="Masukkan merek" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="resolusi" class="form-label">Resolusi</label>
+                            <select name="resolusi" id="resolusi" class="form-select" required>
+                                <option value="">Pilih resolusi</option>
+                                <option value="1366x768" {% if resolusi == "1366x768" %}selected{% endif %}>HD (1366x768)</option>
+                                <option value="1920x1080" {% if resolusi == "1920x1080" %}selected{% endif %}>FHD (1920x1080)</option>
+                                <option value="2560x1440" {% if resolusi == "2560x1440" %}selected{% endif %}>QHD (2560x1440)</option>
+                                <option value="3840x2160" {% if resolusi == "3840x2160" %}selected{% endif %}>4K (3840x2160)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ukuran_inci" class="form-label">Ukuran Inci</label>
+                            <input type="text" name="ukuran_inci" id="ukuran_inci" class="form-control" value="{{ ukuran_inci }}" placeholder="Masukan ukuran inci" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control" value="{{ harga }}" placeholder="Masukkan harga (Rp)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Stok</label>
+                            <input type="number" name="stok" id="stok" class="form-control" value="{{ stok }}" placeholder="Masukkan jumlah stok" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'monitor.index' %}" class="btn btn-outline-secondary btn-lg w-100">Batal</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-warning btn-lg w-100">Simpan Perubahan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Edit Kabel Konektor{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-warning text-center py-3">
+                    <h2 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Kabel&Konektor
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'kabelkonektor.update' id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control" value="{{ nama }}" placeholder="Masukkan nama produk" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="merek" class="form-label">Merek</label>
+                            <input type="text" name="merek" id="merek" class="form-control" value="{{ merek }}" placeholder="Masukkan merek" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipe_kabel" class="form-label">Tipe Kabel</label>
+                            <select name="tipe_kabel" id="tipe_kabel" class="form-select" required>
+                                <option value="">Pilih tipe kabel</option>
+                                <option value="HDMI" {% if tipe_kabel == "HDMI" %}selected{% endif %}>HDMI</option>
+                                <option value="USB" {% if tipe_kabel == "USB" %}selected{% endif %}>USB</option>
+                                <option value="Ethernet" {% if tipe_kabel == "Ethernet" %}selected{% endif %}>Ethernet</option>
+                                <option value="Lainnya" {% if tipe_kabel == "Lainnya" %}selected{% endif %}>Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control" value="{{ harga }}" placeholder="Masukkan harga (Rp)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Stok</label>
+                            <input type="number" name="stok" id="stok" class="form-control" value="{{ stok }}" placeholder="Masukkan jumlah stok" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'kabelkonektor.index' %}" class="btn btn-outline-secondary btn-lg w-100">Batal</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-warning btn-lg w-100">Simpan Perubahan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

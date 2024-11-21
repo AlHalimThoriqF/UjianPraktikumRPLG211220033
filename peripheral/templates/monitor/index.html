@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Monitor{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+    <h2>
+        <i class="fas fa-desktop me-2"></i>Daftar Monitor
+    </h2><br>
+    <a href="{% url 'monitor.add' %}" class="btn btn-success">
+        <i class="fas fa-plus me-2"></i>Tambah Monitor
+    </a>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered" style="width: 100%; overflow-x: auto;">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Merek</th>
+                <th scope="col">Resolusi</th>
+                <th scope="col">Ukuran</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Stok</th>
+                <th scope="col" class="text-center">Aksi</th>
+            </tr>
+        </thead>
+        <tbody class="tables">
+            {% for monitor in monitor_list %}
+            <tr>
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td>{{ monitor.nama }}</td>
+                <td>{{ monitor.merek }}</td>
+                <td>{{ monitor.get_resolusi_display }}</td>
+                <td>{{ monitor.ukuran_inci }}</td>
+                <td>Rp {{ monitor.harga }}</td>
+                <td><span class="badge bg-primary">{{ monitor.stok }}</span></td>
+                <td class="text-center">
+                    <a href="{% url 'monitor.edit' monitor.id %}" class="btn btn-warning btn-sm" title="Edit">Edit
+                    </a>
+                    <a href="{% url 'monitor.delete' monitor.id %}" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus monitor ini?')" title="Hapus">Hapus
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="10" class="text-center py-4">
+                    <div class="alert alert-info mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Belum ada data Monitor
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

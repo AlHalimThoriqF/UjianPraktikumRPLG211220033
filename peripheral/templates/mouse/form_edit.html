@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Edit Mouse{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-warning text-center py-3">
+                    <h2 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Mouse
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'mouse.update' id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control"
+                                placeholder="Masukkan nama produk" value="{{ nama }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="merek" class="form-label">Merek</label>
+                            <input type="text" name="merek" id="merek" class="form-control" placeholder="Masukkan merek"
+                                value="{{ merek }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jenis_koneksi" class="form-label">Jenis Koneksi</label>
+                            <select name="jenis_koneksi" id="jenis_koneksi" class="form-select" required>
+                                <option value="">Pilih jenis koneksi</option>
+                                <option value="Wireless" {% if jenis_koneksi == 'Wireless' %}selected{% endif %}>Wireless</option>
+                                <option value="Wired" {% if jenis_koneksi == 'Wired' %}selected{% endif %}>Wired</option>
+                                <option value="Hybrid" {% if jenis_koneksi == 'Hybrid' %}selected{% endif %}>Hybrid</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dpi_maksimum" class="form-label">DPI Max</label>
+                            <select name="dpi_maksimum" id="dpi_maksimum" class="form-select" required>
+                                <option value="">Pilih dpi maksimum</option>
+                                <option value="800" {% if dpi_maksimum == 800 %}selected{% endif %}>800 DPI</option>
+                                <option value="1600" {% if dpi_maksimum == 1600 %}selected{% endif %}>1600 DPI</option>
+                                <option value="3200" {% if dpi_maksimum == 3200 %}selected{% endif %}>3200 DPI</option>
+                                <option value="6400" {% if dpi_maksimum == 6400 %}selected{% endif %}>6400 DPI</option>
+                                <option value="12000" {% if dpi_maksimum == 12000 %}selected{% endif %}>12000 DPI</option>
+                                <option value="16000" {% if dpi_maksimum == 16000 %}selected{% endif %}>16000 DPI</option>
+                                <option value="20000" {% if dpi_maksimum == 20000 %}selected{% endif %}>20000 DPI</option>
+                                <option value="25600" {% if dpi_maksimum == 25600 %}selected{% endif %}>25600 DPI</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control"
+                                placeholder="Masukkan harga (Rp)" value="{{ harga }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Stok</label>
+                            <input type="number" name="stok" id="stok" class="form-control"
+                                placeholder="Masukkan jumlah stok" value="{{ stok }}" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'mouse.index' %}" class="btn btn-outline-secondary btn-lg w-100">Batal</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-warning btn-lg w-100">Simpan Perubahan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Tambah Headset{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h2 class="mb-0">
+                        <i class="fas fa-plus-circle me-2"></i>Tambah Headset Baru
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'headset.save' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama produk" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="merek" class="form-label">Merek</label>
+                            <input type="text" name="merek" id="merek" class="form-control" placeholder="Masukkan merek" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipe" class="form-label">Tipe</label>
+                            <select name="tipe" id="tipe" class="form-select" required>
+                                <option value="">Pilih tipe</option>
+                                <option value="Wired">Wired</option>
+                                <option value="Wireless">Wireless</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="koneksi" class="form-label">Koneksi</label>
+                            <select name="koneksi" id="koneksi" class="form-select" required>
+                                <option value="">Pilih koneksi</option>
+                                <option value="jack">3.5mm Jack</option>
+                                <option value="usb">USB</option>
+                                <option value="bluetooth">Bluetooth</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kualitas_suara" class="form-label">Kualitas Suara</label>
+                            <select name="kualitas_suara" id="kualitas_suara" class="form-select" required>
+                                <option value="">Pilih kualitas suara</option>
+                                <option value="stereo">Stereo</option>
+                                <option value="surround">Surround</option>
+                                <option value="mono">Mono</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mikrofon</label>
+                            <div class="form-check">
+                                <input type="radio" name="mikrofon" id="mikrofon_yes" class="form-check-input" value="yes" required>
+                                <label for="mikrofon_yes" class="form-check-label">Ada Mikrofon</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="mikrofon" id="mikrofon_no" class="form-check-input" value="no">
+                                <label for="mikrofon_no" class="form-check-label">Tanpa Mikrofon</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control" placeholder="Masukkan harga (Rp)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Stok</label>
+                            <input type="number" name="stok" id="stok" class="form-control" placeholder="Masukkan jumlah stok" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'headset.index' %}" class="btn btn-outline-secondary btn-lg w-100">Batal</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-success btn-lg w-100">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

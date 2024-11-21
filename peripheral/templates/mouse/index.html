@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Mouse{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+    <h2>
+        <i class="fas fa-mouse me-2"></i>Daftar Mouse
+    </h2><br>
+    <a href="{% url 'mouse.add' %}" class="btn btn-success">
+        <i class="fas fa-plus me-2"></i>Tambah Mouse
+    </a>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered" style="width: 100%; overflow-x: auto;">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Merek</th>
+                <th scope="col">Jenis Koneksi</th>
+                <th scope="col">DPI Max</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Stok</th>
+                <th scope="col" class="text-center">Aksi</th>
+            </tr>
+        </thead>
+        <tbody class="tables">
+            {% for mouse in mouse_list %}
+            <tr>
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td>{{ mouse.nama }}</td>
+                <td>{{ mouse.merek }}</td>
+                <td>{{ mouse.get_jenis_koneksi_display }}</td>
+                <td>{{ mouse.get_dpi_maksimum_display }}</td>
+                <td>Rp {{ mouse.harga }}</td>
+                <td><span class="badge bg-primary">{{ mouse.stok }}</span></td>
+                <td class="text-center">
+                    <a href="{% url 'mouse.edit' mouse.id %}" class="btn btn-warning btn-sm" title="Edit">Edit
+                    </a>
+                    <a href="{% url 'mouse.delete' mouse.id %}" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus mouse ini?')" title="Hapus">Hapus
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="10" class="text-center py-4">
+                    <div class="alert alert-info mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Belum ada data Mouse
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

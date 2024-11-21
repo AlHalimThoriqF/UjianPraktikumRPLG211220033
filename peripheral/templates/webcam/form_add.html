@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Tambah WebCam{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h2 class="mb-0">
+                        <i class="fas fa-plus-circle me-2"></i>Tambah WebCam Baru
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'webcam.save' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control"
+                                placeholder="Masukkan nama produk" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="merek" class="form-label">Merek</label>
+                            <input type="text" name="merek" id="merek" class="form-control" placeholder="Masukkan merek"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="resolusi_video" class="form-label">Resolusi Video</label>
+                            <select name="resolusi_video" id="resolusi_video" class="form-select" required>
+                                <option value="">Pilih resolusi video</option>
+                                <option value="720p">HD (1366x768)</option>
+                                <option value="1080p">FHD (1920x1080)</option>
+                                <option value="2K">QHD (2560x1440) </option>
+                                <option value="4K">4K (3840x2160)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fps_maksimum" class="form-label">Fps Max</label>
+                            <select name="fps_maksimum" id="fps_maksimum" class="form-select" required>
+                                <option value="">Pilih fps maksimum</option>
+                                <option value="30">30 FPS</option>
+                                <option value="60">60 FPS</option>
+                                <option value="120">120 FPS</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control"
+                                placeholder="Masukkan harga (Rp)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Stok</label>
+                            <input type="number" name="stok" id="stok" class="form-control"
+                                placeholder="Masukkan jumlah stok" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'webcam.index' %}"
+                                    class="btn btn-outline-secondary btn-lg w-100">Batal</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-success btn-lg w-100">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

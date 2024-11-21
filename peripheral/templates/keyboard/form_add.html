@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Tambah Keyboard{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h2 class="mb-0">
+                        <i class="fas fa-plus-circle me-2"></i>Tambah Keyboard Baru
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'keyboard.save' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama produk" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="merek" class="form-label">Merek</label>
+                            <input type="text" name="merek" id="merek" class="form-control" placeholder="Masukkan merek" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jenis_switch" class="form-label">Jenis Switch</label>
+                            <select name="jenis_switch" id="jenis_switch" class="form-select" required>
+                                <option value="">Pilih jenis switch</option>
+                                <option value="Membran">Membran</option>
+                                <option value="Mecha-Membrane">Mecha-Membrane</option>
+                                <option value="Mechanical-Blue">Mechanical Blue Switch</option>
+                                <option value="Mechanical-Red">Mechanical Red Switch</option>
+                                <option value="Mechanical-Brown">Mechanical Brown Switch</option>
+                                <option value="Optical">Optical Switch</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fitur" class="form-label">Backlight</label>
+                            <select name="fitur" id="fitur" class="form-select" required>
+                                <option value="">Pilih Backlit</option>
+                                <option value="Basic">Basic</option>
+                                <option value="Backlit">Backlit</option>
+                                <option value="RGB">RGB Backlit</option>
+                                <option value="RGB-Pro">RGB + Macro Keys</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control" placeholder="Masukkan harga (Rp)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Stok</label>
+                            <input type="number" name="stok" id="stok" class="form-control" placeholder="Masukkan jumlah stok" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'keyboard.index' %}" class="btn btn-outline-secondary btn-lg w-100">Batal</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-success btn-lg w-100">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

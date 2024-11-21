@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Tambah Mouse{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h2 class="mb-0">
+                        <i class="fas fa-plus-circle me-2"></i>Tambah Mouse Baru
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'mouse.save' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control"
+                                placeholder="Masukkan nama produk" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="merek" class="form-label">Merek</label>
+                            <input type="text" name="merek" id="merek" class="form-control" placeholder="Masukkan merek"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jenis_koneksi" class="form-label">Jenis Koneksi</label>
+                            <select name="jenis_koneksi" id="jenis_koneksi" class="form-select" required>
+                                <option value="">Pilih jenis koneksi</option>
+                                <option value="Wireless">Wireless</option>
+                                <option value="Wired">Wired</option>
+                                <option value="Hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dpi_maksimum" class="form-label">DPI Max</label>
+                            <select name="dpi_maksimum" id="dpi_maksimum" class="form-select" required>
+                                <option value="">Pilih dpi maksimum</option>
+                                <option value="800">800 DPI</option>
+                                <option value="1600">1600 DPI</option>
+                                <option value="3200">3200 DPI</option>
+                                <option value="6400">6400 DPI</option>
+                                <option value="12000">12000 DPI</option>
+                                <option value="16000">16000 DPI</option>
+                                <option value="20000">20000 DPI</option>
+                                <option value="25600">25600 DPI</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control"
+                                placeholder="Masukkan harga (Rp)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Stok</label>
+                            <input type="number" name="stok" id="stok" class="form-control"
+                                placeholder="Masukkan jumlah stok" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'mouse.index' %}"
+                                    class="btn btn-outline-secondary btn-lg w-100">Batal</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-success btn-lg w-100">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Tambah Monitor{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h2 class="mb-0">
+                        <i class="fas fa-plus-circle me-2"></i>Tambah Monitor Baru
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'monitor.save' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control"
+                                placeholder="Masukkan nama produk" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="merek" class="form-label">Merek</label>
+                            <input type="text" name="merek" id="merek" class="form-control" placeholder="Masukkan merek"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="resolusi" class="form-label">Resolusi</label>
+                            <select name="resolusi" id="resolusi" class="form-select" required>
+                                <option value="">Pilih resolusi</option>
+                                <option value="1366x768">HD (1366x768)</option>
+                                <option value="1920x1080">FHD (1920x1080)</option>
+                                <option value="2560x1440">QHD (2560x1440) </option>
+                                <option value="3840x2160">4K (3840x2160)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ukuran_inci" class="form-label">Ukuran Inci</label>
+                            <input type="ukuran_inci" name="ukuran_inci" id="ukuran_inci" class="form-control"
+                                placeholder="Masukan ukuran inci" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control"
+                                placeholder="Masukkan harga (Rp)" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Stok</label>
+                            <input type="number" name="stok" id="stok" class="form-control"
+                                placeholder="Masukkan jumlah stok" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'monitor.index' %}"
+                                    class="btn btn-outline-secondary btn-lg w-100">Batal</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-success btn-lg w-100">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Keyboard{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+    <h2>
+        <i class="fas fa-keyboard me-2"></i>Daftar Keyboard
+    </h2><br>
+    <a href="{% url 'keyboard.add' %}" class="btn btn-success">
+        <i class="fas fa-plus me-2"></i>Tambah Keyboard
+    </a>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered" style="width: 100%; overflow-x: auto;">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Merek</th>
+                <th scope="col">Jenis Switch</th>
+                <th scope="col">Fitur</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Stok</th>
+                <th scope="col" class="text-center">Aksi</th>
+            </tr>
+        </thead>
+        <tbody class="tables">
+            {% for keyboard in keyboard_list %}
+            <tr>
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td>{{ keyboard.nama }}</td>
+                <td>{{ keyboard.merek }}</td>
+                <td>{{ keyboard.get_jenis_switch_display }}</td>
+                <td>{{ keyboard.get_fitur_display }}</td>
+                <td>Rp {{ keyboard.harga }}</td>
+                <td><span class="badge bg-primary">{{ keyboard.stok }}</span></td>
+                <td class="text-center">
+                    <a href="{% url 'keyboard.edit' keyboard.id %}" class="btn btn-warning btn-sm" title="Edit">Edit
+                    </a>
+                    <a href="{% url 'keyboard.delete' keyboard.id %}" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus Keyboard ini?')" title="Hapus">Hapus
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="10" class="text-center py-4">
+                    <div class="alert alert-info mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Belum ada data Keyboard
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

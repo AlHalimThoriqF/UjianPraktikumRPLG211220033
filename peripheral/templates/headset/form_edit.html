@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Headset{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-warning text-center py-3">
+                    <h2 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Headset
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'headset.update' id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan nama produk" value="{{ nama }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="merek" class="form-label">Merek</label>
+                            <input type="text" name="merek" id="merek" class="form-control" placeholder="Masukkan merek" value="{{ merek }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipe" class="form-label">Tipe</label>
+                            <select name="tipe" id="tipe" class="form-select" required>
+                                <option value="Wired" {% if tipe == 'Wired' %}selected{% endif %}>Wired</option>
+                                <option value="Wireless" {% if tipe == 'Wireless' %}selected{% endif %}>Wireless</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="koneksi" class="form-label">Koneksi</label>
+                            <select name="koneksi" id="koneksi" class="form-select" required>
+                                <option value="jack" {% if koneksi == 'jack' %}selected{% endif %}>3.5mm Jack</option>
+                                <option value="usb" {% if koneksi == 'usb' %}selected{% endif %}>USB</option>
+                                <option value="bluetooth" {% if koneksi == 'bluetooth' %}selected{% endif %}>Bluetooth</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kualitas_suara" class="form-label">Kualitas Suara</label>
+                            <select name="kualitas_suara" id="kualitas_suara" class="form-select" required>
+                                <option value="stereo" {% if kualitas_suara == 'stereo' %}selected{% endif %}>Stereo</option>
+                                <option value="surround" {% if kualitas_suara == 'surround' %}selected{% endif %}>Surround</option>
+                                <option value="mono" {% if kualitas_suara == 'mono' %}selected{% endif %}>Mono</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mikrofon</label>
+                            <div class="form-check">
+                                <input type="radio" name="mikrofon" id="mikrofon_yes" class="form-check-input" value="True" {% if mikrofon == 'True' %}checked{% endif %} required>
+                                <label for="mikrofon_yes" class="form-check-label">Ada Mikrofon</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" name="mikrofon" id="mikrofon_no" class="form-check-input" value="False" {% if mikrofon == 'False' %}checked{% endif %}>
+                                <label for="mikrofon_no" class="form-check-label">Tanpa Mikrofon</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control" placeholder="Masukkan harga (Rp)" value="{{ harga }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stok" class="form-label">Stok</label>
+                            <input type="number" name="stok" id="stok" class="form-control" placeholder="Masukkan jumlah stok" value="{{ stok }}" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="{% url 'headset.index' %}" class="btn btn-outline-secondary btn-lg w-100">Batal</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-warning btn-lg w-100">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

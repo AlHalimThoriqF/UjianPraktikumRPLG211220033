@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Kabel&Konektor{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+    <h2>
+        <i class="fas fa-plug me-2"></i>Daftar Kabel&Konektor
+    </h2><br>
+    <a href="{% url 'kabelkonektor.add' %}" class="btn btn-success">
+        <i class="fas fa-plus me-2"></i>Tambah Kabel&Konektor
+    </a>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered" style="width: 100%; overflow-x: auto;">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Merek</th>
+                <th scope="col">Tipe</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Stok</th>
+                <th scope="col" class="text-center">Aksi</th>
+            </tr>
+        </thead>
+        <tbody class="tables">
+            {% for kabelkonektor in kabelkonektor_list %}
+            <tr>
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td>{{ kabelkonektor.nama }}</td>
+                <td>{{ kabelkonektor.merek }}</td>
+                <td>{{ kabelkonektor.get_tipe_kabel_display }}</td>
+                <td>Rp {{ kabelkonektor.harga }}</td>
+                <td><span class="badge bg-primary">{{ kabelkonektor.stok }}</span></td>
+                <td class="text-center">
+                    <a href="{% url 'kabelkonektor.edit' kabelkonektor.id %}" class="btn btn-warning btn-sm" title="Edit">Edit
+                    </a>
+                    <a href="{% url 'kabelkonektor.delete' kabelkonektor.id %}" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus kabel&konektor ini?')" title="Hapus">Hapus
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="10" class="text-center py-4">
+                    <div class="alert alert-info mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Belum ada data Kabel&Konektor
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

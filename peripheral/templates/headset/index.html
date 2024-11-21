@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Daftar Headset{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+    <h2>
+        <i class="fas fa-headphones me-2"></i>Daftar Headset
+    </h2><br>
+    <a href="{% url 'headset.add' %}" class="btn btn-success">
+        <i class="fas fa-plus me-2"></i>Tambah Headset
+    </a>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered" style="width: 100%; overflow-x: auto;">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Merek</th>
+                <th scope="col">Tipe</th>
+                <th scope="col">Koneksi</th>
+                <th scope="col">Kualitas Suara</th>
+                <th scope="col">Mikrofon</th>
+                <th scope="col">Harga</th>
+                <th scope="col">Stok</th>
+                <th scope="col" class="text-center">Aksi</th>
+            </tr>
+        </thead>
+        <tbody class="tables">
+            {% for headset in headset_list %}
+            <tr>
+                <td class="text-center">{{ forloop.counter }}</td>
+                <td>{{ headset.nama }}</td>
+                <td>{{ headset.merek }}</td>
+                <td>{{ headset.get_tipe_display }}</td>
+                <td>{{ headset.get_koneksi_display }}</td>
+                <td>{{ headset.get_kualitas_suara_display }} </td>
+                <td>{{ headset.mikrofon|yesno:"Ya,Tidak" }}</td>
+                <td>Rp {{ headset.harga }}</td>
+                <td><span class="badge bg-primary">{{ headset.stok }}</span></td>
+                <td class="text-center">
+                    <a href="{% url 'headset.edit' headset.id %}" class="btn btn-warning btn-sm" title="Edit">Edit
+                    </a>
+                    <a href="{% url 'headset.delete' headset.id %}" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus headset ini?')" title="Hapus">Hapus
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="10" class="text-center py-4">
+                    <div class="alert alert-info mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Belum ada data headset
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
